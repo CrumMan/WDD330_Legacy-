@@ -1,0 +1,21 @@
+{
+  "name": "wdd330_legacy",
+  "version": "1.0.0",
+  "description": "Legacy Football Final",
+  "main": "index.js",
+  "devDependencies": {
+    "vite": "^7.1.7"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build --emptyOutDir",
+    "lint": "eslint *.js src/**/*.js",
+    "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
+    "test": "jest"
+  },
+  "keywords": [
+    "final"
+  ],
+  "author": "JT Pyle",
+  "license": "ISC"
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Home</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/nflTeam.js" type="module"></script>
+</head>
+
+<body>
+    <header class="divider" id="header"></header>
+  <main id="nfl_team_body" class="divider">
+    <div id="team_hero">
+        <template id="team_card_template">
+                <div id="team_hero_div">
+                <h1 class="team_name"></h1>
+                <a>
+                <img loading="lazy" class="team_image">
+                </a>
+            </div>
+        </template>
+    </div>
+    <h2>Players</h2>
+    <div id="player_card_container">
+        <template id="player_cards">
+            <div class="player_card">
+                <a class="player_card_click" href="#">
+                <img class="player_image" src="" alt="player headshot" />
+                <strong><p class="player_name"></p></strong>
+                <p class="position"> </p>
+                </a>
+            </div>
+        </template>
+    </div>
+
+  </main>
+
+  <footer id="footer"></footer>
+</body>
+
+</html>
