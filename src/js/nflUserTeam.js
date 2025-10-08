@@ -109,13 +109,21 @@ async function GetAndDisplayPlayer(id){
            
            
             else if (position === "Tight End"){
+                let scoringCategory = null
+                    for (const category of statisticsData.splits.categories){
+                        if (category.name === "scoring"){
+                           scoringCategory = category;
+                           break
+                            }
+                    }
                 const gamesPlayed= statisticsData.splits.categories[0].stats[6].value
-                const avgReceptions = (statisticsData.splits.categories[3].stats[16].displayValue/gamesPlayed).toFixed(2)
+                const avgReceptions = parseFloat((statisticsData.splits.categories[3].stats[16].displayValue/gamesPlayed).toFixed(2))
                 const totalRecieveingYards = statisticsData.splits.categories[3].stats[12].value
-                const totalTouchdowns = statisticsData.splits.categories[3].stats[11].value
-                const averageTouchdowns = (totalRecieveingYards/gamesPlayed).toFixed(2)
-                if(totalTouchdowns === 0){avgReceivingTouchdowns = 0}
-                const avgGameGain= (totalRecieveingYards/gamesPlayed).toFixed(2);
+                const totalTouchdowns = scoringCategory ? scoringCategory.stats[6].value : 0;
+                let averageTouchdowns = parseFloat((totalTouchdowns/gamesPlayed).toFixed(2))
+                if(totalTouchdowns === 0){avgGameGain = 0}
+                const avgGameGain= parseFloat((totalRecieveingYards/gamesPlayed).toFixed(2));
+                console.log(avgGameGain, avgReceptions, averageTouchdowns);
                 const playerAvgPoints = await WideRecieverPoints(avgGameGain, avgReceptions, averageTouchdowns)
                 console.log(playerAvgPoints);
                 let  playerhtml = document.querySelector('.players')

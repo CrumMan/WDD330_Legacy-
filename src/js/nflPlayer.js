@@ -96,12 +96,19 @@ async function GetPlayer(){
                     setupAddButtons();
                 }
                 else if (position === "Tight End" && categoriesLength > 6 ){
+                    let scoringCategory = null;
+                    for (const category of statisticsData.splits.categories){
+                        if (category.name === "scoring"){
+                           scoringCategory = category;
+                           break
+                            }
+                    }
                     const rating = statisticsData.splits.categories[3].stats[1].value
                     const gamesPlayed= statisticsData.splits.categories[0].stats[6].value
                     const avgReceptions = (statisticsData.splits.categories[3].stats[16].displayValue/gamesPlayed).toFixed(2)
                     const totalRecieveingYards = statisticsData.splits.categories[3].stats[12].value
-                    const totalTouchdowns = statisticsData.splits.categories[3].stats[11].value
-                    const avgReceivingTouchdowns = (totalRecieveingYards/gamesPlayed).toFixed(2)
+                    const totalTouchdowns = scoringCategory ? parseFloat(scoringCategory.stats[6].value) : 0;
+                    const avgReceivingTouchdowns = (totalTouchdowns/gamesPlayed).toFixed(2)
                     if(totalTouchdowns === 0){avgReceivingTouchdowns = 0}
                     const avgYards= (totalRecieveingYards/gamesPlayed).toFixed(2);
                     document.querySelector('.player').innerHTML= await buildTightEnd(name, team, position,rating,id, totalTouchdowns, gamesPlayed, headshot,avgReceivingTouchdowns, avgReceptions, avgYards)
