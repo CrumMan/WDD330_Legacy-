@@ -1,4 +1,9 @@
-
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
 
 export function renderWithTemplate(
   template,
@@ -55,4 +60,25 @@ export async function ApiToJSONFetcher(url) {
 export async function pullUrlParamater(url, parameter) {
   const pJson  = await ApiToJSONFetcher(url);
   return pJson;
+}
+async function averageTouchdownPoints(averageTouchdowns) {
+  return averageTouchdowns * 6
+}
+
+
+export async function RunningBackPoints(avgRushingYards, averageTouchdowns) {
+  const avgRushingPoints = Math.floor(avgRushingYards/10)
+  const totalPoints = Math.floor(await averageTouchdownPoints(averageTouchdowns) + avgRushingPoints)
+  return totalPoints
+}
+export async function WideRecieverPoints(avgGameGain, avgReceptions, averageTouchdowns){
+  const touchdownPoints = await averageTouchdownPoints(averageTouchdowns)
+  const averageGameGainPoints = Math.floor(avgGameGain/25)
+  return Math.floor(avgReceptions + touchdownPoints + averageGameGainPoints)
+}
+export async function QuarterbackPoints(avgPassingYards, avgPassingTouchdowns, averageRushingYards, averageRushingTouchdowns,avgFumbles,average2PointConversions) {
+  const avgPassingPoints = (avgPassingTouchdowns * 4) + parseInt(Math.floor(avgPassingYards/25))
+  const avgRushingPoints = (averageRushingTouchdowns *6) + Math.floor(averageRushingYards/10)
+  const totalPoints = Math.floor(avgPassingPoints + avgRushingPoints - (avgFumbles*2) + average2PointConversions * 2)
+  return  totalPoints
 }

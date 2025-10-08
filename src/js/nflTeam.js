@@ -44,7 +44,7 @@ async function createPlayersList(){
         const buildPlayer = await ApiToJSONFetcher(ref);
         const teamUrlData = await pullUrlParamater(buildPlayer.team.$ref)
         buildPlayer.team = teamUrlData.id
-        if(buildPlayer.team === id ){
+        if(buildPlayer.team === id && (buildPlayer.position.displayName === "Wide Receiver" || buildPlayer.position.displayName ==="Quarterback" || buildPlayer.position.displayName === "Tight End" || buildPlayer.position.displayName === "Running Back")){
              teamPlayers.push(buildPlayer)
         }
     }
@@ -81,7 +81,7 @@ async function createPlayersList(){
         clone.querySelector('.player_card_click').href = `../nfl_player/index.html?id=${playerId}&teamId=${id}`
         clone.querySelector('.player_image').src = headshot;
 
-        clone.querySelector('.position').innerHTML = `<strong>Position: </strong> ${position}`
+        clone.querySelector('.positionC').innerHTML = `<strong>Position: </strong> ${position}`
 
         container.appendChild(clone); 
 
