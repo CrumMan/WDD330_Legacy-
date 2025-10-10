@@ -16,15 +16,18 @@ async function GetAndDisplayPlayer(id){
     const playerDataWebs = await ApiToJSONFetcher(url)
     const playerRefs =  await playerDataWebs.items.map(item => item.$ref);
     for (const ref of playerRefs){
-        const buildPlayer = await ApiToJSONFetcher(ref);
+        const secureRef = ref.replace('http://', 'https://');
+        const buildPlayer = await ApiToJSONFetcher(secureRef);
         if(buildPlayer.id === id){
             const name = buildPlayer.displayName;
             const teamurl = buildPlayer.team.$ref
-            const teamData = await ApiToJSONFetcher(teamurl);
+            const secureRefT = await teamurl.replace('http://', 'https://');
+            const teamData = await ApiToJSONFetcher(secureRefT);
             const team = teamData.displayName;
             const position = buildPlayer.position?.displayName || "";
-            const statisticsURL = buildPlayer.statistics?.$ref
-            const statisticsData = await ApiToJSONFetcher(statisticsURL);
+            const statisticsURL = buildPlayer.statistics?.$ref || "";
+            const secureRefS = await statisticsURL.replace('http://', 'https://');
+            const statisticsData = await ApiToJSONFetcher(secureRefS);
             const headshot = buildPlayer.headshot?.href || '../public/images/default_player.png';
             console.log({ id, name, team, position, headshot,statisticsData });
 

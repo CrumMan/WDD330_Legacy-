@@ -41,8 +41,11 @@ async function createPlayersList(){
     const teamPlayers = [];
     const players=[]
     for (const ref of PlayerRefs){
-        const buildPlayer = await ApiToJSONFetcher(ref);
-        const teamUrlData = await pullUrlParamater(buildPlayer.team.$ref)
+        const secureRef = await ref.replace('http://', 'https://');
+        const buildPlayer = await ApiToJSONFetcher(secureRef);
+        const teamUrlDataURL = await buildPlayer.team.$ref
+        const secureRefT = await teamUrlDataURL.replace('http://', 'https://');
+        const teamUrlData = await pullUrlParamater(secureRefT)
         buildPlayer.team = teamUrlData.id
         if(buildPlayer.team === id && (buildPlayer.position.displayName === "Wide Receiver" || buildPlayer.position.displayName ==="Quarterback" || buildPlayer.position.displayName === "Tight End" || buildPlayer.position.displayName === "Running Back")){
              teamPlayers.push(buildPlayer)

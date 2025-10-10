@@ -8,18 +8,21 @@ async function GetPlayer(){
     const playerDataWebs = await ApiToJSONFetcher(url)
     const playerRefs =  await playerDataWebs.items.map(item => item.$ref);
     for (const ref of playerRefs){
-        const buildPlayer = await ApiToJSONFetcher(ref);
+      const secureRef = await ref.replace('http://', 'https://');
+        const buildPlayer = await ApiToJSONFetcher(secureRef);
         if(buildPlayer.id == id){
             console.log(buildPlayer);
             const name = buildPlayer.displayName;
             const teamurl = buildPlayer.team.$ref
-            const teamData = await ApiToJSONFetcher(teamurl);
+            const secureRefT = await teamurl.replace('http://', 'https://');
+            const teamData = await ApiToJSONFetcher(secureRefT);
             const team = teamData.displayName;
             const position = buildPlayer.position?.displayName || "";
             const statisticsURL = buildPlayer.statistics?.$ref || "";
+            const secureRefS = await statisticsURL.replace('http://', 'https://');
             const headshot = buildPlayer.headshot?.href || '../public/images/default_player.png';
-            if(statisticsURL){
-                const statisticsData = await ApiToJSONFetcher(statisticsURL);
+            if(secureRefS){
+                const statisticsData = await ApiToJSONFetcher(secureRefS);
                 console.log(statisticsData);
                 const categoriesLength = statisticsData?.splits?.categories?.length || 0;
                 if (position === "Wide Receiver" && categoriesLength > 6){
