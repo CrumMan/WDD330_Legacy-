@@ -121,8 +121,8 @@ async function GetAndDisplayPlayer(id){
                 const totalRecieveingYards = statisticsData.splits.categories[3].stats[12].value
                 const totalTouchdowns = scoringCategory ? scoringCategory.stats[6].value : 0;
                 let averageTouchdowns = parseFloat((totalTouchdowns/gamesPlayed).toFixed(2))
+                let avgGameGain= parseFloat((totalRecieveingYards/gamesPlayed).toFixed(2));
                 if(totalTouchdowns === 0){avgGameGain = 0}
-                const avgGameGain= parseFloat((totalRecieveingYards/gamesPlayed).toFixed(2));
                 console.log(avgGameGain, avgReceptions, averageTouchdowns);
                 const playerAvgPoints = await WideRecieverPoints(avgGameGain, avgReceptions, averageTouchdowns)
                 console.log(playerAvgPoints);
@@ -174,8 +174,9 @@ function setupRemoveButtons() {
 
       let  playerhtml = document.querySelector('.players')
       playerhtml.innerHTML = "";
+      document.getElementById("totalPoints").textContent = 0;
+     console.log('Refreshed');
        await getAndLoadPlayers();
-      console.log('Refreshed');
     });
   });
 }
