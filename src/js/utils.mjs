@@ -53,7 +53,7 @@ export async function ApiToJSONFetcher(url) {
       return data;
   } 
  catch (error){
-    console.log($`Error: ${error}`);
+    console.log(`Error: ${error}`);
     throw error;
  }
 }
