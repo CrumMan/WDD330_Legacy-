@@ -71,13 +71,13 @@ async function GetAndDisplayPlayer(id){
                     const avgPassingYards = statisticsData.splits.categories[1].stats[22].value
                     const totalRushingYards = statisticsData.splits.categories[2].stats[12].value
                     const averageRushingYards = parseFloat(totalRushingYards/totalGames.toFixed(2))
-                    const totalRushTouchdowns = statisticsData.splits.categories[7].stats[8].value
+                    const totalRushTouchdowns = scoringCategory.stats[8].value
                     const averageRushingTouchdowns = parseFloat((totalRushTouchdowns/totalGames).toFixed(2))
                     2
                     const totalFumbles = statisticsData.splits.categories[0].stats[0].value
                     let avgFumbles = parseFloat((totalFumbles/totalGames).toFixed(2))
                     if (totalFumbles === 0) avgFumbles = 0
-                    const twoPointConversions = statisticsData.splits.categories[7].stats[12].value
+                    const twoPointConversions = scoringCategory.stats[12].value
                     let average2PointConversions = parseFloat((twoPointConversions/totalGames).toFixed(2))
                     if (twoPointConversions === 0 ) average2PointConversions = 0
 

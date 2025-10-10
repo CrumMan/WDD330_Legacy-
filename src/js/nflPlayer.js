@@ -59,8 +59,8 @@ async function GetPlayer(){
                     const avgPassingTouchdowns = statisticsData.splits.categories[1].stats[39].value.toFixed(2)
                     const avgPassingYards = statisticsData.splits.categories[1].stats[22].value.toFixed(2)
                     const averageRushingYards = statisticsData.splits.categories[2].stats[5].value.toFixed(2)
-                    const totalRushTouchdowns = statisticsData.splits.categories[7].stats[8].value
-                    const averageRushingTouchdowns = statisticsData.splits.categories[7].stats[8].value
+                    const totalRushTouchdowns = scoringCategory.stats[8].value
+                    const averageRushingTouchdowns = scoringCategory.stats[8].value
                     const totalPoints = ((avgPassingTouchdowns + averageRushingTouchdowns)*6).toFixed(0)
                     const averagePointsPerGame = (totalPoints/totalGames).toFixed(2)
                     const averageTouchdownsPerGame = ((totalRushTouchdowns+totalPassingTouchdowns)/totalGames).toFixed(2)
@@ -69,7 +69,7 @@ async function GetPlayer(){
                     let averageFumbles = (totalFumbles/totalGames).toFixed(2)
                     if (totalFumbles === 0) averageFumbles = 0
                     const rating = statisticsData.splits.categories[1].stats[3].value
-                    const twoPointConversions = statisticsData.splits.categories[7].stats[12].value
+                    const twoPointConversions = scoringCategory.stats[12].value
                     let average2PointConversions = (twoPointConversions/totalGames).toFixed(2)
                     if (twoPointConversions === 0 ) average2PointConversions = 0
                     document.querySelector('.player').innerHTML= await buildQuarterBack(name, team, position,totalGames, avgPassingYards, avgPassingTouchdowns,totalPoints,averageRushingYards, averageRushingTouchdowns, averagePointsPerGame, averageTouchdownsPerGame, rating, headshot, id, averageFumbles, average2PointConversions);
