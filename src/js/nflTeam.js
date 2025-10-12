@@ -1,8 +1,8 @@
-import { loadHeaderFooter,ApiToJSONFetcher,getParam, pullUrlParamater } from "./utils.mjs";
+import { loadHeaderFooter,ApiToJSONFetcher,getParam, pullUrlParamater, setupPageTransition } from "./utils.mjs";
 loadHeaderFooter();
 createTeam();
 createPlayersList();
-
+setupPageTransition();
 
 async function createTeam(){
 

@@ -3,7 +3,13 @@ html, body{
   margin: 0;
   padding: 0;
 }
-
+body{
+  opacity: 1;
+  transition:opacity 0.5s ease;
+}
+body.fade-out{
+  opacity: 0;
+}
 
 footer{
   background-color: #d50a0a;
@@ -134,6 +140,18 @@ line-height: 1;
   gap: 10px; 
   margin: 1.5rem 0;
 }
+.add:hover{
+background-color: white;
+color: black;
+border: black solid 1px;
+}
+.player_card:hover{
+  max-width: 400px;
+  height: 500px;
+  background-color: gray;
+  border: solid black 2px;
+  border-radius: 15px;
+}
 .player_card{
   width: 100%;
   display: flex;
@@ -143,6 +161,7 @@ line-height: 1;
   justify-content: center;
   max-width: 300px;
   border: solid 2px;
+  border-radius: 5px;
 }
 .player_image{
   width: 300px;

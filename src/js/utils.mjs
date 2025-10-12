@@ -82,3 +82,25 @@ export async function QuarterbackPoints(avgPassingYards, avgPassingTouchdowns, a
   const totalPoints = Math.floor(avgPassingPoints + avgRushingPoints - (avgFumbles*2) + average2PointConversions * 2)
   return  totalPoints
 }
+
+export function setupPageTransition(){
+if (document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", () =>{
+    document.body.classList.remove("fade-out")
+  })
+}
+  document.addEventListener("click", e => {
+    const link = e.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("http") || href.startsWith("#")) return;
+
+    console.log("transitioning to:", href);
+    e.preventDefault();
+    document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = href;
+      },500)
+    })
+}

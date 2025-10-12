@@ -1,6 +1,9 @@
-import { loadHeaderFooter,ApiToJSONFetcher } from "./utils.mjs";
+import { loadHeaderFooter,ApiToJSONFetcher, setupPageTransition } from "./utils.mjs";
+setupPageTransition();
+
 loadHeaderFooter();
 loadAndDisplayTeams();
+
 async function loadAndDisplayTeams(){
     const url=`https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams`
     const data= await ApiToJSONFetcher(url)

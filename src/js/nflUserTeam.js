@@ -1,7 +1,7 @@
-import { loadHeaderFooter,ApiToJSONFetcher, getLocalStorage, setLocalStorage, QuarterbackPoints, WideRecieverPoints, RunningBackPoints } from "./utils.mjs";
+import { loadHeaderFooter,ApiToJSONFetcher, getLocalStorage, setLocalStorage, QuarterbackPoints, WideRecieverPoints, RunningBackPoints, setupPageTransition } from "./utils.mjs";
 loadHeaderFooter();
 getAndLoadPlayers();
-
+setupPageTransition();
 async function getAndLoadPlayers(){
     const players = getLocalStorage('players') || []
     for (const id of players){

@@ -1,6 +1,7 @@
-import { loadHeaderFooter,ApiToJSONFetcher,getParam, getLocalStorage, setLocalStorage} from "./utils.mjs";
+import { loadHeaderFooter,ApiToJSONFetcher,getParam, getLocalStorage, setLocalStorage, setupPageTransition} from "./utils.mjs";
 loadHeaderFooter();
 GetPlayer();
+setupPageTransition();
 
 async function GetPlayer(){
     const id = getParam("id")
