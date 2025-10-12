@@ -166,6 +166,9 @@ async function removePlayer(id){
 
 }
 function setupRemoveButtons() {
+    document.querySelectorAll(".remove").forEach(button => {
+        button.replaceWith(button.cloneNode(true))
+    });
   document.querySelectorAll(".remove").forEach(button => {
     button.addEventListener("click", async (event) => {
       event.preventDefault();
